@@ -1,6 +1,6 @@
 public class Piece {
-    public Square oldLoc;
-    public Square newLoc;
+    public Square oldLoc = new Square("Start");
+    public Square newLoc = new Square("-");
 
     public Square getOldLoc() {
         return oldLoc;
