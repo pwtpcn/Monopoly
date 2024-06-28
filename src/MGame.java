@@ -1,38 +1,52 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class MGame {
     public int roundCount;
     public Board board;
-    public Die dice1;
-    public Die dice2;
+    public ArrayList<Die> dice;
     public List<Player> players;
 
     public MGame(int maxPlayer) {
         this.board = new Board();
+        this.dice = new ArrayList<>();
+        dice.add(new Die());
+        dice.add(new Die());
         this.players = new ArrayList<>(maxPlayer);
     }
 
     public void playGame(){
-        board.createBoard(board.getLocationsName());
+        board.createBoard();
 
-        int maxRound = 20;
-        for (this.roundCount=1; this.roundCount < maxRound; roundCount++) {
-
+        System.out.println("Player list: ");
+        for(Player player : players){
+            player.setDice(this.dice);
+            player.setBoard(board);
+            player.getPiece().setOldLoc(board.getSquares().getFirst());
+            player.getPiece().setNewLoc(board.getSquares().getFirst());
+            System.out.println(player.getName());
         }
+        System.out.println("----------------------------------------");
+
+        for (this.roundCount=1; this.roundCount <= 10; roundCount++) {
+            playRound(roundCount);
+        }
+
+        System.out.println("Out of round.");
+        System.out.println("End the game.");
 
     }
 
-    private void playRound(int player){
-        Player now = this.players.get(player);
-        Square oldLoc = now.getPiece().oldLoc;
+    private void playRound(int roundCount){
+        Player now = this.players.get(roundCount % players.size());
         now.takeTurn();
-        System.out.println("First roll: " + now.getDice1().getFaceValue());
-        System.out.println("Second roll: " + now.getDice2().getFaceValue());
-        int total = now.getDice1().getFaceValue() + now.getDice2().getFaceValue();
+        System.out.println("Round " + roundCount);
+        System.out.println("It's " + now.getName() + " turn.");
+        System.out.println("First roll: " + now.getDice().get(0).getFaceValue());
+        System.out.println("Second roll: " + now.getDice().get(1).getFaceValue());
+        int total = now.getDice().get(0).getFaceValue() + now.getDice().get(1).getFaceValue();
         System.out.println("Total rolls: " + total);
-        System.out.println(now.getName() + " move from " + oldLoc.getName() + " to " + now.getPiece().getNewLoc().getName());
+        System.out.println(now.getName() + " move from " + now.getPiece().getOldLoc().getName() + " to " + now.getPiece().getNewLoc().getName());
         System.out.println("----------------------------------------");
     }
 }

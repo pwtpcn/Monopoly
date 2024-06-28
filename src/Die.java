@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class Die {
     public int faceValue;
 
@@ -16,8 +14,10 @@ public class Die {
     }
 
     public void roll(){
-        Random rand = new Random();
-        setFaceValue(rand.nextInt(6));
+//        Random rand = new Random();
+//        setFaceValue(rand.nextInt(6));
+        int random = (int)(Math.random()*6+1);
+        setFaceValue(random);
     }
 
 }

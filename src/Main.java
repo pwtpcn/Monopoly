@@ -28,7 +28,7 @@ public class Main {
                 }
                 System.out.println("----------------------------------------");
 
-//                game.playGame();
+                game.playGame();
 
                 flag = false;
             }
