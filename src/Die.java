@@ -1,3 +1,8 @@
+/*
+    Thanapoom Chaisena
+    6510450437
+ */
+
 public class Die {
     public int faceValue;
 

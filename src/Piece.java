@@ -1,3 +1,8 @@
+/*
+    Thanapoom Chaisena
+    6510450437
+ */
+
 public class Piece {
     public Square oldLoc;
     public Square newLoc;
